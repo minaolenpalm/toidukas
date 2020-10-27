@@ -76,3 +76,60 @@ CREATE TRIGGER userchange
 	AS UPDATE toidupyramiid.users
 		SET changedate = GETDATE()
 		WHERE ID IN (SELECT DISTINCT ID FROM Inserted);
+
+create function toidupyramiid.calcStPyramiid(@id int)
+RETURNS @stPyramiid TABLE 
+(	
+	cal	float,
+    tera float, 
+    juur float, 
+    piim float, 
+    liha float, 
+    rasv float,
+	magus float
+)
+as
+begin
+	declare @cal float;
+	declare @tera float;
+	declare @juur float;
+	declare @piim float;
+	declare @liha float;
+	declare @rasv float;
+	declare @magus float;
+/*
+	declare @cTera float;
+	declare @cJuur float;
+	declare @cPiim float;
+	declare @cLiha float;
+	declare @cRasv float;
+	declare @cMagus float;
+*/
+	set @cal = (select tu.dailycal from toidupyramiid.users tu where tu.id=@id);
+	SELECT 
+		@tera=((sp.g1min + sp.g1max)/2), 
+		@juur=((sp.g2min + sp.g2max)/2), 
+		@piim=((sp.g3min + sp.g3max)/2), 
+		@liha=((sp.g4min + sp.g4max)/2), 
+		@rasv=((sp.g5min + sp.g5max)/2), 
+		@magus=((sp.g6min + sp.g6max)/2) 
+	FROM toidupyramiid.standardpyramiid sp
+	WHERE mincal<@cal and maxcal >= @cal;
+/*
+	set @ctera=(select pg.unitcal from toidupyramiid.prodgroups where id=1);
+	set @cjuur=(select pg.unitcal from toidupyramiid.prodgroups where id=2);
+	set @cpiim=(select pg.unitcal from toidupyramiid.prodgroups where id=3);
+	set @cliha=(select pg.unitcal from toidupyramiid.prodgroups where id=4);
+	set @crasv=(select pg.unitcal from toidupyramiid.prodgroups where id=5);
+	set @cmagus=(select pg.unitcal from toidupyramiid.prodgroups where id=6);
+*/
+
+	BEGIN
+        INSERT @stPyramiid
+        SELECT @cal, @tera, @juur, @piim, @liha, @rasv, @magus;
+    END;
+	RETURN;
+END;
+
+--select * from toidupyramiid.prodgroups;
+--drop function toidupyramiid.calcstpyramiid;

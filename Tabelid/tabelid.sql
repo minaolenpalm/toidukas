@@ -123,14 +123,19 @@ create table toidupyramiid.events(
 		ON UPDATE NO ACTION
 );
 
-create table toidupyramiid.calDaily(
-
-
+create table toidupyramiid.standardPyramiid(
+	minCal float not null,
+	maxCal float not null,
+	g1min float not null,
+	g1max float not null,
+	g2min float not null,
+	g2max float not null,
+	g3min float not null,
+	g3max float not null,
+	g4min float not null,
+	g4max float not null,
+	g5min float not null,
+	g5max float not null,
+	g6min float not null,
+	g6max float not null
 );
-
-
-
-
-
-
-
