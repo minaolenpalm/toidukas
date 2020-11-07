@@ -39,7 +39,7 @@ create table toidupyramiid.users(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
-
+/*
 create table toidupyramiid.userRelationships(
 	customerUserID int not null,
 	consultantUserID int not null,
@@ -71,7 +71,7 @@ create table toidupyramiid.userRoles(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
-
+*/
 create table toidupyramiid.prodGroups(
 	id int primary key,
 	name varchar(50) not null,
@@ -108,8 +108,8 @@ create table toidupyramiid.events(
 	id int primary key identity,
 	userID int not null,
 	productID int not null,
-	amount int not null,
-	eventDate date not null,
+	amount float not null,
+	eventDay int not null,
 	insertDate as getdate(),
 	CONSTRAINT fk_prod_id
 		FOREIGN KEY (productID)
@@ -122,6 +122,7 @@ create table toidupyramiid.events(
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
 );
+
 
 create table toidupyramiid.standardPyramiid(
 	minCal float not null,
