@@ -171,6 +171,12 @@ insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 
 insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 125, 2, 1)
 insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 150, 3, 1)
 insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 131, 1, 1)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 24, 2, 2)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 91, 3, 2)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 35, 2, 2)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 69, 2, 3)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 26, 3, 3)
+insert into toidupyramiid.events(userID, productID, amount, eventDay) values(1, 133, 10, 3)
 
 
 

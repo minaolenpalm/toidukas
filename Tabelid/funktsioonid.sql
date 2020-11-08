@@ -133,3 +133,15 @@ END;
 
 --select * from toidupyramiid.prodgroups;
 --drop function toidupyramiid.calcstpyramiid;
+select * from toidupyramiid.events;
+select * from toidupyramiid.products;
+select * from toidupyramiid.prodTypes;
+select * from toidupyramiid.prodGroups
+SELECT * FROM toidupyramiid.activitylevel;
+
+select ev.userID, ev.eventDay, pg.name, pg.unitCal, sum(ev.amount) 'portsud', (pg.unitCal*sum(ev.amount)) 'kat cal' from toidupyramiid.events ev
+left join toidupyramiid.products ps on ev.productID=ps.id
+left join toidupyramiid.prodTypes pt on ps.prodType=pt.id
+left join toidupyramiid.prodGroups pg on pt.prodGroup=pg.id
+where ev.userID=1 and ev.eventDay=3
+group by ev.userid, ev.eventday, pg.name, pg.unitcal;
