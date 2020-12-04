@@ -71,12 +71,19 @@ alter table toidupyramiid.users add dailyCal AS toidupyramiid.calcdaily(id);
 
 
 CREATE TRIGGER userchange
-	ON toidupyramiid.users
+	ON [toidupyramiid].[users]
 	AFTER UPDATE
 	AS UPDATE toidupyramiid.users
-		SET changedate = GETDATE()
+		SET changeTime = GetUtcDate() + 2/24.0
 		WHERE ID IN (SELECT DISTINCT ID FROM Inserted);
 
+CREATE TRIGGER [toidupyramiid].[userInsert]
+	ON [toidupyramiid].[users]
+	AFTER INSERT
+	AS UPDATE toidupyramiid.users
+		SET insertTime = GetUtcDate() + 2/24.0
+		WHERE ID IN (SELECT DISTINCT ID FROM Inserted);
+		
 create function toidupyramiid.calcStPyramiid(@id int)
 RETURNS @stPyramiid TABLE 
 (	
