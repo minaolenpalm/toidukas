@@ -110,7 +110,7 @@ create table toidupyramiid.events(
 	productID int not null,
 	amount float not null,
 	eventDay int not null,
-	insertDate as getdate(),
+	insertDate datetime,
 	CONSTRAINT fk_prod_id
 		FOREIGN KEY (productID)
 		REFERENCES toidupyramiid.products(id)

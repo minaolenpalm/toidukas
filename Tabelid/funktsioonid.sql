@@ -84,6 +84,13 @@ CREATE TRIGGER [toidupyramiid].[userInsert]
 		SET insertTime = GetUtcDate() + 2/24.0
 		WHERE ID IN (SELECT DISTINCT ID FROM Inserted);
 		
+CREATE TRIGGER [toidupyramiid].[eventInsert]
+	ON [toidupyramiid].[events]
+	AFTER INSERT
+	AS UPDATE toidupyramiid.events
+		SET insertDate = GetUtcDate() + 2/24.0
+		WHERE ID IN (SELECT DISTINCT ID FROM Inserted);
+		
 create function toidupyramiid.calcStPyramiid(@id int)
 RETURNS @stPyramiid TABLE 
 (	
